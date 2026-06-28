@@ -8,10 +8,18 @@ const MOBILE_HINTS = ["react-native", "flutter", "android", "ios", "mobile", "ko
 const ECOMMERCE_HINTS = ["ecommerce", "e-commerce", "shop", "stripe", "checkout"];
 const SAAS_HINTS = ["saas", "multi-tenant", "subscription"];
 
+/** Authenticated requests get 5,000 req/hour instead of the anonymous 60/hour.
+ * GITHUB_TOKEN is optional — everything degrades to public, unauthenticated
+ * calls if it's not set. */
+function githubHeaders(): HeadersInit {
+  const token = process.env.GITHUB_TOKEN;
+  return token ? { Authorization: `Bearer ${token}` } : {};
+}
+
 export async function fetchGitHubRepos(): Promise<GitHubRepo[]> {
   const res = await fetch(
     `${GITHUB_API}/users/${GITHUB_USERNAME}/repos?sort=updated&per_page=50`,
-    { next: { revalidate: 3600 } },
+    { headers: githubHeaders(), next: { revalidate: 3600 } },
   );
 
   if (!res.ok) return [];
@@ -21,6 +29,7 @@ export async function fetchGitHubRepos(): Promise<GitHubRepo[]> {
 
 export async function fetchGitHubUser(): Promise<GitHubUser> {
   const res = await fetch(`${GITHUB_API}/users/${GITHUB_USERNAME}`, {
+    headers: githubHeaders(),
     next: { revalidate: 3600 },
   });
 
@@ -44,6 +53,7 @@ const ACTIVITY_WINDOW_DAYS = 14;
  * callers should treat the sparkline as optional ("if available"). */
 export async function fetchGitHubActivity(): Promise<number[]> {
   const res = await fetch(`${GITHUB_API}/users/${GITHUB_USERNAME}/events/public?per_page=100`, {
+    headers: githubHeaders(),
     next: { revalidate: 3600 },
   });
 

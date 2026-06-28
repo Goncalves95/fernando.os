@@ -1,6 +1,7 @@
 import { MotionConfig } from "framer-motion";
 import type { Metadata, Viewport } from "next";
 import { Inter, JetBrains_Mono } from "next/font/google";
+import { SITE_URL } from "@/lib/site";
 import "./globals.css";
 
 const inter = Inter({
@@ -15,7 +16,6 @@ const jetbrainsMono = JetBrains_Mono({
   display: "swap",
 });
 
-const SITE_URL = "https://fernando-os.dev";
 const TITLE = "Fernando Gonçalves | Full Stack Engineer · Zürich";
 const DESCRIPTION =
   "Senior Full Stack Engineer specializing in Java, Angular, Python ML. Based in Zürich, Switzerland.";

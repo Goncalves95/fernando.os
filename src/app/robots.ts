@@ -1,8 +1,7 @@
 import { MetadataRoute } from "next";
+import { SITE_URL as baseUrl } from "@/lib/site";
 
 export default function robots(): MetadataRoute.Robots {
-  const baseUrl = "https://fernando-os.dev";
-
   return {
     rules: {
       userAgent: "*",
