@@ -104,19 +104,20 @@ Both are optional — the site works with neither set.
 | Variable               | Required | Purpose                                                                 |
 | ----------------------- | -------- | ------------------------------------------------------------------------ |
 | `GITHUB_TOKEN`          | No       | A GitHub PAT (`read:user`, `public_repo` scopes) to raise the GitHub API rate limit from 60 to 5,000 req/hour. Read server-side only in `src/lib/github.ts`. |
-| `NEXT_PUBLIC_SITE_URL`  | No       | Overrides the canonical site URL (`metadataBase`, OG image, robots, sitemap). Defaults to `https://iamfernando.vercel.app` — see `src/lib/site.ts`. |
+| `NEXT_PUBLIC_SITE_URL`  | No       | Overrides the canonical site URL (`metadataBase`, OG image, robots, sitemap). Defaults to `https://iamfernando.dev` — see `src/lib/site.ts`. |
 
 ## Deploying (Vercel)
 
-This replaces my old portfolio at **iamfernando.vercel.app** — same domain, new repo.
+Custom domain: **iamfernando.dev** (purchased — not a `.vercel.app` subdomain).
 
 1. Import `Goncalves95/fernando.os` into Vercel. Framework, root directory, build
    command, and output directory are all auto-detected (Next.js defaults).
-2. Project name: `fernando-os`. To keep serving from `iamfernando.vercel.app`,
-   reassign that domain to this Vercel project (Project Settings → Domains) instead
-   of leaving it on the old project.
-3. Env vars (Project Settings → Environment Variables) — both optional, see above.
-4. Deploy. Pushing to `main` redeploys automatically afterwards.
+2. Project name: `fernando-os`.
+3. Project Settings → Domains → add `iamfernando.dev` (and `www.iamfernando.dev` if
+   wanted). Vercel gives the exact A/CNAME records to add at the registrar — DNS
+   propagation can take up to a few hours.
+4. Env vars (Project Settings → Environment Variables) — both optional, see above.
+5. Deploy. Pushing to `main` redeploys automatically afterwards.
 
 ## Post-deploy checklist
 
