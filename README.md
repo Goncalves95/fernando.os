@@ -84,10 +84,11 @@ public/
 
 ## Notes to self
 
-- The GitHub integration (`src/lib/github.ts`) hits the public, unauthenticated
-  GitHub REST API for my username and caches via
-  `fetch(..., { next: { revalidate: 3600 } })` — no env vars, no auth, stays well
-  inside the 60 req/hour anonymous rate limit.
+- The GitHub integration (`src/lib/github.ts`) hits the public GitHub REST API for
+  my username and caches via `fetch(..., { next: { revalidate: 3600 } })`. It works
+  fully unauthenticated (60 req/hour, plenty for a low-traffic portfolio), but reads
+  an optional `GITHUB_TOKEN` env var for authenticated requests (5,000 req/hour) if
+  set — see [Environment variables](#environment-variables).
 - `npm install` applies `patches/next+14.2.35.patch` via `patch-package`
   (`postinstall`). It fixes a Windows-only bug in Next's bundled `@vercel/og`
   (used by `app/opengraph-image.tsx`) where `path.join` on a `file://` URL produces
@@ -95,6 +96,40 @@ public/
 - Still need real screenshots in `public/images/projects/*.png` — fine for now since
   cards/modals degrade gracefully to a gradient.
 - `npm run type-check` / `lint` / `build` should always be green before pushing.
+
+## Environment variables
+
+Both are optional — the site works with neither set.
+
+| Variable               | Required | Purpose                                                                 |
+| ----------------------- | -------- | ------------------------------------------------------------------------ |
+| `GITHUB_TOKEN`          | No       | A GitHub PAT (`read:user`, `public_repo` scopes) to raise the GitHub API rate limit from 60 to 5,000 req/hour. Read server-side only in `src/lib/github.ts`. |
+| `NEXT_PUBLIC_SITE_URL`  | No       | Overrides the canonical site URL (`metadataBase`, OG image, robots, sitemap). Defaults to `https://iamfernando.vercel.app` — see `src/lib/site.ts`. |
+
+## Deploying (Vercel)
+
+This replaces my old portfolio at **iamfernando.vercel.app** — same domain, new repo.
+
+1. Import `Goncalves95/fernando.os` into Vercel. Framework, root directory, build
+   command, and output directory are all auto-detected (Next.js defaults).
+2. Project name: `fernando-os`. To keep serving from `iamfernando.vercel.app`,
+   reassign that domain to this Vercel project (Project Settings → Domains) instead
+   of leaving it on the old project.
+3. Env vars (Project Settings → Environment Variables) — both optional, see above.
+4. Deploy. Pushing to `main` redeploys automatically afterwards.
+
+## Post-deploy checklist
+
+- [ ] Boot screen plays on first visit
+- [ ] GitHub Stats loads real data (repo count, followers)
+- [ ] Sparkline renders
+- [ ] Projects section shows GitHub repos + featured projects
+- [ ] Terminal opens and responds to: `help`, `about`, `projects`
+- [ ] TechGraph renders and hover works
+- [ ] Mobile hamburger menu works
+- [ ] CV download works
+- [ ] OG image renders correctly (test with [opengraph.xyz](https://www.opengraph.xyz/))
+- [ ] All external links open in a new tab (`target="_blank" rel="noopener noreferrer"`)
 
 ## Scripts
 
