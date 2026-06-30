@@ -66,6 +66,20 @@ export const featuredProjects: Project[] = [
     status: "live",
   },
   {
+    id: "elite-insurtech",
+    name: "Elite InsurTech",
+    displayName: "Elite InsurTech",
+    description: "AI-driven healthcare invoice validation platform for the Swiss insurance market.",
+    longDescription:
+      "An automated enterprise platform that uses autonomous agent pipelines to ingest, parse, and validate Swiss healthcare invoices against intricate industry rule sets. Built with an event-driven mindset, featuring strict state management, idempotency controls to prevent duplicate claims, and real-time status dashboards with human approval overrides. Designed for high-stakes financial accuracy where a missed edge case means a wrong payout.",
+    techs: ["Python", "LangGraph", "PostgreSQL", "Azure Functions", "React", "TypeScript"],
+    imageUrl: "/images/projects/elite-insurtech.png",
+    featured: true,
+    source: "manual",
+    category: "saas",
+    status: "live",
+  },
+  {
     id: "onlydevs",
     name: "onlydevs",
     displayName: "OnlyDevs",
