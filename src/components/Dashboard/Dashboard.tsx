@@ -69,10 +69,15 @@ export function Dashboard({ projectsSlot, githubStatsSlot, contactSlot }: Dashbo
             About<span className="text-accent">.</span>
           </h2>
           <p className="mt-2 max-w-2xl text-sm leading-relaxed text-zinc-400">
-            Full Stack Software Engineer who builds complete products — from data
-            models and APIs to the interfaces people actually touch. This site is
-            itself one of those products: a small, terminal-flavored operating
-            system instead of a static page.
+            Full-Stack Engineer who builds complete products, not just features —
+            backends that don&apos;t fall over, financial systems that actually need
+            to be secure, interfaces people enjoy using. This site is the proof: a
+            working terminal-inspired OS, built from scratch, because a static page
+            felt like lying about who I am.
+          </p>
+          <p className="mt-2 max-w-2xl text-sm leading-relaxed text-zinc-400">
+            Based in Zürich, Switzerland (Permit B). Probably debugging something at
+            2am.
           </p>
         </Window>
 
