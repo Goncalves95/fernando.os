@@ -12,9 +12,9 @@ interface NavigationProps {
 
 const NAV_ITEMS: { id: DashboardWindowId; label: string }[] = [
   { id: "home", label: "Home" },
+  { id: "about", label: "About" },
   { id: "projects", label: "Projects" },
   { id: "skills", label: "Skills" },
-  { id: "about", label: "About" },
   { id: "contact", label: "Contact" },
 ];
 
