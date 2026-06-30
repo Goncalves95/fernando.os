@@ -9,6 +9,7 @@ export const featuredProjects: Project[] = [
     longDescription:
       "Full-stack SaaS CRM for tattoo artists with multi-tenant architecture, an Instagram Marketing Hub with Meta OAuth, AES-256-CBC token encryption, JWT refresh tokens, and Stripe integration. First production user: an active tattoo studio in Zürich.",
     techs: ["React", "TypeScript", "Node.js", "MongoDB Atlas", "Render", "Vercel"],
+    liveUrl: "https://inkflow-frontend-staging.onrender.com/",
     imageUrl: "/images/projects/inkflow-crm.png",
     featured: true,
     source: "manual",
